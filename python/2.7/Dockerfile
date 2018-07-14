@@ -15,5 +15,11 @@ RUN tar -xzf ${temp}/Python-${version}.tgz -C ${temp}/ && \
     Python-${version}/configure && \
     make altinstall && \
     rm -rf ${temp}
+
+ADD https://bootstrap.pypa.io/get-pip.py /get-pip.py
+RUN python get-pip.py && \
+    rm -rf get-pip.py 
+
 RUN echo "Stack Info:" && \
-    python --version
+    python --version && \
+    pip --version
