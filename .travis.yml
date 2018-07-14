@@ -1,0 +1,7 @@
+sudo: required
+services:
+  - docker
+
+script:
+  - cd python/2.7
+  - docker build -t pantherhub/python:2.7 .
