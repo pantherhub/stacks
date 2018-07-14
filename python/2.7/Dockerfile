@@ -7,10 +7,11 @@ ENV version=2.7
 ENV temp=/home/setup
 
 RUN yum install -y gcc make
-RUN mkdir -p ${temp} && \
+
+ADD https://www.python.org/ftp/python/${version}/Python-${version}.tgz ${temp}/
+
+RUN tar -xzf ${temp}/Python-${version}.tgz -C ${temp}/ && \
     cd ${temp} && \
-    curl https://www.python.org/ftp/python/${version}/Python-${version}.tgz --output package.tgz && \
-    tar xzf package.tgz && \
     Python-${version}/configure && \
     make altinstall && \
     rm -rf ${temp}
